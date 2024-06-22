@@ -27,4 +27,8 @@ func hit():
 		death()
 
 func _on_hurt_box_body_entered(body):
-	body.hit(10)
+	body._on_enemy_intersect(10)
+
+
+func _on_hurt_box_body_exited(body):
+	body._on_enemy_stop_intersect()
