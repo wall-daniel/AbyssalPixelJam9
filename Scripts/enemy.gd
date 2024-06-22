@@ -10,6 +10,8 @@ var is_stunned:bool = false
 var battery_scene = preload("res://Scenes/pickup.tscn")
 @onready var battery_node = $"../../../Battery"
 
+signal enemy_attack(damage)
+
 func _physics_process(_delta):
 	#player movement
 	if not is_stunned:
@@ -50,13 +52,37 @@ func hit():
 	is_stunned = true
 	stuntime.start()
 
+var intersected_players = []
+var ready_to_attack = true
+
 #idk what Danny did here
 func _on_hurt_box_body_entered(body):
-	body._on_enemy_intersect(10)
+	# Set current player
+	if not body in intersected_players:
+		intersected_players.push_front(body)
+	
+	# Check if they can attack
+	if ready_to_attack:
+		get_node("../../").hit_player(10)
+		
+	# Set timer
+	$AttackTimer.start()
 
 func _on_hurt_box_body_exited(body):
-	body._on_enemy_stop_intersect()
+	# Remove player from intersected
+	var body_idx = intersected_players.find(body)
+	if body_idx != -1:
+		intersected_players.remove_at(body_idx)
 
 #stun cooldown
 func _on_stuntime_timeout():
 	is_stunned = false
+
+# Attack timer
+func _on_attack_timer_timeout():
+	# Check if still intersecting with a player
+	if len(intersected_players) != 0:
+		get_node("../../").hit_player(10)
+		
+		# Reset timer
+		$AttackTimer.start()

@@ -7,6 +7,10 @@ extends Node2D
 #preload scene
 var lightning = preload("res://Scenes/lightning.tscn")
 
+#player health
+const MAX_HEALTH = 100
+var health = MAX_HEALTH
+
 #add the lightning bolt
 func zap():
 	#check ui if player has the juice
@@ -20,3 +24,7 @@ func zap():
 #checks p1 for input
 func _on_player_1_zap():
 	zap()
+
+func hit_player(damage):
+	health -= damage;
+	print('Ooof: ' + str(health))

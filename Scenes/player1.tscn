@@ -17,8 +17,3 @@ texture = ExtResource("1_n1rgq")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_3t3c7")
-
-[node name="invulnerability" type="Timer" parent="."]
-wait_time = 0.5
-
-[connection signal="timeout" from="invulnerability" to="." method="_on_invulnerability_timeout"]
