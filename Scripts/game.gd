@@ -7,8 +7,8 @@ var lightning = preload("res://Scenes/lightning.tscn")
 
 func zap():
 	var instance = lightning.instantiate()
-	instance.get_child(1).shape.a = player_1.global_position
-	instance.get_child(1).shape.b = player_2.global_position
+	instance.get_child(0).shape.a = player_1.global_position
+	instance.get_child(0).shape.b = player_2.global_position
 	add_child(instance)
 
 

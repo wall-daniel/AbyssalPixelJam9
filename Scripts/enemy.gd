@@ -1,6 +1,7 @@
 extends CharacterBody2D
 
 const SPEED = 100
+@export var health = 1
 
 func _physics_process(_delta):
 	var direction = find_closest() - global_position
@@ -16,3 +17,8 @@ func find_closest() -> Vector2:
 		closest_player = players[1]
 	
 	return closest_player.global_position
+
+func hit():
+	health -= 1
+	if health == 0:
+		queue_free()
