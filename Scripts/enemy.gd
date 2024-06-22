@@ -6,6 +6,9 @@ const SPEED = 100
 var is_stunned:bool = false
 @onready var stuntime = $Stuntime
 
+#get battery drop
+var battery_scene = preload("res://Scenes/pickup.tscn")
+
 func _physics_process(_delta):
 	if not is_stunned:
 		var direction = find_closest() - global_position
