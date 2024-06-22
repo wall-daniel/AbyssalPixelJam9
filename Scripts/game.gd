@@ -17,8 +17,17 @@ func zap():
 	if ui.zap_num > 0:
 		#make lightning
 		var instance = lightning.instantiate()
-		instance.get_child(0).shape.a = player_1.global_position
-		instance.get_child(0).shape.b = player_2.global_position
+		var hitbox = instance.get_child(0)
+		hitbox.shape.a = player_1.global_position
+		hitbox.shape.b = player_2.global_position
+		var lightning_dist = player_1.global_position.distance_to(player_2.global_position)
+		var lightning_angle = player_1.global_position.angle_to_point(player_2.global_position)
+		var texture = instance.get_child(1)
+		texture.region_rect = Rect2(0,0,16,lightning_dist)
+		texture.global_position = player_1.global_position
+		texture.offset.y = lightning_dist/2
+		texture.rotation = lightning_angle - deg_to_rad(90)
+		print(rad_to_deg(texture.rotation))
 		add_child(instance)
 
 #checks p1 for input
