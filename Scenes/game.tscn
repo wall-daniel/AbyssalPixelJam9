@@ -1,13 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://dw1036we4bnyk"]
+[gd_scene load_steps=5 format=3 uid="uid://dw1036we4bnyk"]
 
 [ext_resource type="PackedScene" uid="uid://xf3st41xiic" path="res://Scenes/player1.tscn" id="1_1c0dr"]
+[ext_resource type="Script" path="res://Scripts/game.gd" id="1_ps43w"]
 [ext_resource type="PackedScene" uid="uid://bgbrtwptk61b1" path="res://Scenes/player2.tscn" id="2_ucsvu"]
 [ext_resource type="PackedScene" uid="uid://ibooixg6ee1u" path="res://Scenes/enemy.tscn" id="3_1hkjn"]
 
 [node name="Game" type="Node2D"]
+script = ExtResource("1_ps43w")
 
 [node name="Player1" parent="." instance=ExtResource("1_1c0dr")]
-position = Vector2(308, 100)
+position = Vector2(358, 225)
 
 [node name="Player2" parent="." instance=ExtResource("2_ucsvu")]
 position = Vector2(82, 79)
@@ -15,10 +17,12 @@ position = Vector2(82, 79)
 [node name="Enemies" type="Node" parent="."]
 
 [node name="Enemy" parent="Enemies" instance=ExtResource("3_1hkjn")]
-position = Vector2(245, 153)
+position = Vector2(247, 175)
 
 [node name="Enemy3" parent="Enemies" instance=ExtResource("3_1hkjn")]
-position = Vector2(453, 227)
+position = Vector2(277, 79)
 
 [node name="Enemy2" parent="Enemies" instance=ExtResource("3_1hkjn")]
-position = Vector2(31, 196)
+position = Vector2(138, 123)
+
+[connection signal="zap" from="Player1" to="." method="_on_player_1_zap"]

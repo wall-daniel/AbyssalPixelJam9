@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://c6u6xho23jt0s"]
+
+[ext_resource type="Texture2D" uid="uid://cdsems6iss51d" path="res://Assets/icon.svg" id="1_4wokx"]
+[ext_resource type="Script" path="res://Scripts/lightning.gd" id="1_eadsk"]
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_6rthv"]
+
+[node name="Lightning" type="Area2D"]
+collision_mask = 4
+script = ExtResource("1_eadsk")
+
+[node name="Icon" type="Sprite2D" parent="."]
+position = Vector2(-3.8147e-06, 5)
+scale = Vector2(0.0234375, 0.078125)
+texture = ExtResource("1_4wokx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("SegmentShape2D_6rthv")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
