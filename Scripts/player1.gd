@@ -32,9 +32,9 @@ func _physics_process(_delta):
 	move_and_slide()
 	#ZAP
 	if Input.is_action_just_pressed("zap"):
-		change_zap.emit(false)
 		zap.emit()
-
+		change_zap.emit(false)
+		
 #collecting the battery
 func collect():
 	change_zap.emit(true)

@@ -6,6 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://conbiiiex5m3y" path="res://Scenes/spawn.tscn" id="5_er2mk"]
 [ext_resource type="PackedScene" path="res://Scenes/pickup.tscn" id="5_y8un4"]
 [ext_resource type="PackedScene" uid="uid://cd4wot1jx43ib" path="res://Scenes/charging_station.tscn" id="6_074e4"]
+[ext_resource type="PackedScene" uid="uid://bar5nwac7lq8h" path="res://Scenes/pickup.tscn" id="5_y8un4"]
+[ext_resource type="Texture2D" uid="uid://d0hopkfl0b1y0" path="res://Assets/Map.png" id="6_8qiic"]
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_ps43w")
@@ -13,11 +15,11 @@ script = ExtResource("1_ps43w")
 [node name="UI" parent="." instance=ExtResource("2_3qgy2")]
 
 [node name="Player2" parent="." instance=ExtResource("1_1c0dr")]
-position = Vector2(61, 83)
+position = Vector2(54, 492)
 is_p1 = false
 
 [node name="Player1" parent="." instance=ExtResource("1_1c0dr")]
-position = Vector2(377, 225)
+position = Vector2(892, 495)
 
 [node name="Battery" type="Node2D" parent="."]
 
@@ -32,22 +34,28 @@ position = Vector2(229, 131)
 position = Vector2(188, 69)
 
 [node name="Spawn2" parent="SpawnLocation" instance=ExtResource("5_er2mk")]
-position = Vector2(282, 89)
+position = Vector2(420, 58)
 
 [node name="Spawn3" parent="SpawnLocation" instance=ExtResource("5_er2mk")]
 position = Vector2(150, 139)
 
 [node name="Spawn4" parent="SpawnLocation" instance=ExtResource("5_er2mk")]
-position = Vector2(215, 165)
+position = Vector2(574, 180)
 
 [node name="Spawn5" parent="SpawnLocation" instance=ExtResource("5_er2mk")]
 position = Vector2(139, 194)
 
 [node name="Spawn6" parent="SpawnLocation" instance=ExtResource("5_er2mk")]
-position = Vector2(227, 213)
+position = Vector2(849, 64)
 
 [node name="Spawn7" parent="SpawnLocation" instance=ExtResource("5_er2mk")]
-position = Vector2(310, 162)
+position = Vector2(402, 163)
+
+[node name="Map" type="Sprite2D" parent="."]
+z_index = -5
+scale = Vector2(3, 3)
+texture = ExtResource("6_8qiic")
+offset = Vector2(160, 90)
 
 [node name="ChargingStation" parent="." instance=ExtResource("6_074e4")]
 
