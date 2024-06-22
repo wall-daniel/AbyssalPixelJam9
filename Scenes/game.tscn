@@ -4,6 +4,8 @@
 [ext_resource type="Script" path="res://Scripts/game.gd" id="1_ps43w"]
 [ext_resource type="PackedScene" uid="uid://c1vxgx41n1pt" path="res://Scenes/ui.tscn" id="2_3qgy2"]
 [ext_resource type="PackedScene" uid="uid://conbiiiex5m3y" path="res://Scenes/spawn.tscn" id="5_er2mk"]
+[ext_resource type="PackedScene" path="res://Scenes/pickup.tscn" id="5_y8un4"]
+[ext_resource type="PackedScene" uid="uid://cd4wot1jx43ib" path="res://Scenes/charging_station.tscn" id="6_074e4"]
 [ext_resource type="PackedScene" uid="uid://bar5nwac7lq8h" path="res://Scenes/pickup.tscn" id="5_y8un4"]
 [ext_resource type="Texture2D" uid="uid://d0hopkfl0b1y0" path="res://Assets/Map.png" id="6_8qiic"]
 
@@ -55,6 +57,9 @@ scale = Vector2(3, 3)
 texture = ExtResource("6_8qiic")
 offset = Vector2(160, 90)
 
+[node name="ChargingStation" parent="." instance=ExtResource("6_074e4")]
+
 [connection signal="change_zap" from="Player2" to="UI" method="_on_player_2_change_zap"]
 [connection signal="change_zap" from="Player1" to="UI" method="_on_player_1_change_zap"]
 [connection signal="zap" from="Player1" to="." method="_on_player_1_zap"]
+[connection signal="charge_battery" from="ChargingStation" to="UI" method="_on_charging_station_charge_battery"]
