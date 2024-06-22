@@ -8,6 +8,7 @@ var is_stunned:bool = false
 
 #get battery drop
 var battery_scene = preload("res://Scenes/pickup.tscn")
+@onready var battery_node = $"../../../Battery"
 
 func _physics_process(_delta):
 	if not is_stunned:
@@ -28,10 +29,19 @@ func find_closest() -> Vector2:
 func death():
 	queue_free()
 
+func drop():
+	randomize()
+	var drop_chance = randi_range(1,5)
+	if drop_chance == 5:
+		var battery = battery_scene.instantiate()
+		add_child(battery)
+		battery.reparent(battery_node)
+	death()
+
 func hit():
 	health -= 1
 	if health == 0:
-		death()
+		call_deferred("drop")
 	is_stunned = true
 	stuntime.start()
 

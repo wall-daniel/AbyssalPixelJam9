@@ -18,6 +18,11 @@ is_p1 = false
 [node name="Player1" parent="." instance=ExtResource("1_1c0dr")]
 position = Vector2(377, 225)
 
+[node name="Battery" type="Node2D" parent="."]
+
+[node name="Pickup" parent="Battery" instance=ExtResource("5_y8un4")]
+position = Vector2(229, 131)
+
 [node name="Enemies" type="Node2D" parent="."]
 
 [node name="SpawnLocation" type="Node2D" parent="."]
@@ -42,11 +47,6 @@ position = Vector2(227, 213)
 
 [node name="Spawn7" parent="SpawnLocation" instance=ExtResource("5_er2mk")]
 position = Vector2(310, 162)
-
-[node name="Battery" type="Node2D" parent="."]
-
-[node name="Pickup" parent="Battery" instance=ExtResource("5_y8un4")]
-position = Vector2(229, 131)
 
 [connection signal="change_zap" from="Player2" to="UI" method="_on_player_2_change_zap"]
 [connection signal="change_zap" from="Player1" to="UI" method="_on_player_1_change_zap"]

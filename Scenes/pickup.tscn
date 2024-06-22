@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://bar5nwac7lq8h"]
 
-[ext_resource type="Script" path="res://Scripts/pickup.gd" id="1_sq6sb"]
+[ext_resource type="Script" path="res://Scripts/pickup.gd" id="1_8a542"]
 [ext_resource type="Texture2D" uid="uid://cdsems6iss51d" path="res://Assets/icon.svg" id="1_vkhgp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uiwc4"]
@@ -8,7 +8,7 @@ size = Vector2(12, 12)
 
 [node name="Pickup" type="Area2D"]
 collision_mask = 2
-script = ExtResource("1_sq6sb")
+script = ExtResource("1_8a542")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 modulate = Color(0.753655, 0.987797, 1.54018e-06, 1)
