@@ -18,7 +18,10 @@ func find_closest() -> Vector2:
 	
 	return closest_player.global_position
 
+func death():
+	queue_free()
+
 func hit():
 	health -= 1
 	if health == 0:
-		queue_free()
+		death()
