@@ -1,6 +1,7 @@
 extends CharacterBody2D
 
-signal zap(n_zap)
+signal zap()
+signal change_zap(n_zap)
 
 const SPEED = 300.0
 const MAX_HEALTH = 100
@@ -30,7 +31,8 @@ func _physics_process(_delta):
 	if Input.is_action_just_pressed("zap"):
 		if n_zap > 0:
 			n_zap -= 1
-			zap.emit(n_zap)
+			change_zap.emit(n_zap)
+			zap.emit()
 
 	move_and_slide()
 
@@ -46,15 +48,19 @@ func _on_enemy_stop_intersect():
 func hit(damage):
 	if not invulnerable:
 		health -= damage;
-		
 		$invulnerability.start()
 		invulnerable = true
 		print('Ooof: ' + str(health))
 		print('Intersections: ' + str(num_enemies_touching))
-
 
 func _on_invulnerability_timeout():
 	invulnerable = false
 	
 	if num_enemies_touching > 0:
 		hit(10)
+
+func collect():
+	n_zap += 3
+	if n_zap > 5:
+		n_zap = 5
+	change_zap.emit(n_zap)

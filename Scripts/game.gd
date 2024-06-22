@@ -11,5 +11,5 @@ func zap():
 	instance.get_child(0).shape.b = player_2.global_position
 	add_child(instance)
 
-func _on_player_1_zap(_n_zap):
+func _on_player_1_zap():
 	zap()
