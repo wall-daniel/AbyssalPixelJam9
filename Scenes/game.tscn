@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://dw1036we4bnyk"]
+[gd_scene load_steps=7 format=3 uid="uid://dw1036we4bnyk"]
 
 [ext_resource type="PackedScene" uid="uid://xf3st41xiic" path="res://Scenes/player1.tscn" id="1_1c0dr"]
 [ext_resource type="Script" path="res://Scripts/game.gd" id="1_ps43w"]
 [ext_resource type="PackedScene" uid="uid://c1vxgx41n1pt" path="res://Scenes/ui.tscn" id="2_3qgy2"]
 [ext_resource type="PackedScene" uid="uid://conbiiiex5m3y" path="res://Scenes/spawn.tscn" id="5_er2mk"]
-[ext_resource type="PackedScene" uid="uid://bar5nwac7lq8h" path="res://Scenes/pickup.tscn" id="5_y8un4"]
+[ext_resource type="PackedScene" path="res://Scenes/pickup.tscn" id="5_y8un4"]
+[ext_resource type="PackedScene" uid="uid://cd4wot1jx43ib" path="res://Scenes/charging_station.tscn" id="6_074e4"]
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_ps43w")
@@ -48,6 +49,9 @@ position = Vector2(227, 213)
 [node name="Spawn7" parent="SpawnLocation" instance=ExtResource("5_er2mk")]
 position = Vector2(310, 162)
 
+[node name="ChargingStation" parent="." instance=ExtResource("6_074e4")]
+
 [connection signal="change_zap" from="Player2" to="UI" method="_on_player_2_change_zap"]
 [connection signal="change_zap" from="Player1" to="UI" method="_on_player_1_change_zap"]
 [connection signal="zap" from="Player1" to="." method="_on_player_1_zap"]
+[connection signal="charge_battery" from="ChargingStation" to="UI" method="_on_charging_station_charge_battery"]

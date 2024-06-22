@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://cd4wot1jx43ib"]
+
+[ext_resource type="Script" path="res://Scripts/charging_station.gd" id="1_j4myo"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cr01t"]
+size = Vector2(62.0007, 129)
+
+[sub_resource type="Gradient" id="Gradient_axu73"]
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_2tjty"]
+gradient = SubResource("Gradient_axu73")
+
+[node name="ChargingStation" type="Area2D"]
+position = Vector2(720, 120)
+rotation = 1.57079
+collision_layer = 255
+collision_mask = 255
+script = ExtResource("1_j4myo")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_cr01t")
+
+[node name="ChargingTimer" type="Timer" parent="."]
+wait_time = 0.5
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-0.500038, -0.999942)
+scale = Vector2(0.230469, 127.001)
+texture = SubResource("GradientTexture1D_2tjty")
+
+[connection signal="body_entered" from="." to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_area_2d_body_exited"]
+[connection signal="timeout" from="ChargingTimer" to="." method="_on_charging_timer_timeout"]

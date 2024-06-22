@@ -26,3 +26,8 @@ func _on_player_2_change_zap(add):
 		if zap_num > 5:
 			zap_num = 5
 	zap_bar.value = zap_num
+
+# From charging station
+func _on_charging_station_charge_battery():
+	zap_num += 1
+	zap_bar.value = zap_num
