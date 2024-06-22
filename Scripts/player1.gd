@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-signal zap(int)
+signal zap(n_zap)
 
 const SPEED = 300.0
 const MAX_HEALTH = 100
