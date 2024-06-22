@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-signal zap
+signal zap(int)
 
 const SPEED = 300.0
 const MAX_HEALTH = 100
@@ -13,6 +13,7 @@ var p1_controls: Array = ["p1-left", "p1-right", "p1-up", "p1-down"]
 var p2_controls: Array = ["p2-left", "p2-right", "p2-up", "p2-down"]
 @export var is_p1 = true
 var controls: Array = []
+var n_zap = 5
 
 func _ready():
 	if is_p1:
@@ -27,7 +28,9 @@ func _physics_process(_delta):
 	else:
 		velocity = Vector2(move_toward(velocity.x, 0, SPEED),move_toward(velocity.y, 0, SPEED))
 	if Input.is_action_just_pressed("zap"):
-		zap.emit()
+		if n_zap > 0:
+			n_zap -= 1
+			zap.emit(n_zap)
 
 	move_and_slide()
 

@@ -1,11 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://dw1036we4bnyk"]
+[gd_scene load_steps=5 format=3 uid="uid://dw1036we4bnyk"]
 
 [ext_resource type="PackedScene" uid="uid://xf3st41xiic" path="res://Scenes/player1.tscn" id="1_1c0dr"]
 [ext_resource type="Script" path="res://Scripts/game.gd" id="1_ps43w"]
-[ext_resource type="PackedScene" uid="uid://bon4befepqjoj" path="res://Scenes/spawn.tscn" id="5_er2mk"]
+[ext_resource type="PackedScene" uid="uid://c1vxgx41n1pt" path="res://Scenes/ui.tscn" id="2_3qgy2"]
+[ext_resource type="PackedScene" uid="uid://conbiiiex5m3y" path="res://Scenes/spawn.tscn" id="5_er2mk"]
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_ps43w")
+
+[node name="UI" parent="." instance=ExtResource("2_3qgy2")]
 
 [node name="Player2" parent="." instance=ExtResource("1_1c0dr")]
 position = Vector2(61, 83)
@@ -40,3 +43,4 @@ position = Vector2(227, 213)
 position = Vector2(310, 162)
 
 [connection signal="zap" from="Player1" to="." method="_on_player_1_zap"]
+[connection signal="zap" from="Player1" to="UI" method="_on_player_1_zap"]
