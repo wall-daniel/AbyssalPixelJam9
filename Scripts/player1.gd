@@ -1,11 +1,12 @@
 extends CharacterBody2D
 
+#signal moment
 signal zap()
-signal change_zap(n_zap)
-
+signal change_zap(add)
+#constant moment
 const SPEED = 300.0
 const MAX_HEALTH = 100
-
+#player hit check
 var health = MAX_HEALTH
 var invulnerable = false
 var num_enemies_touching = 0
@@ -17,24 +18,28 @@ var controls: Array = []
 var n_zap = 5
 
 func _ready():
+	#check to see what controls to use
 	if is_p1:
 		controls = p1_controls
 	else:
 		controls = p2_controls
 
 func _physics_process(_delta):
+	#basic movement
 	var direction = Input.get_vector(controls[0], controls[1], controls[2], controls[3])
 	if direction:
 		velocity = direction * SPEED
 	else:
 		velocity = Vector2(move_toward(velocity.x, 0, SPEED),move_toward(velocity.y, 0, SPEED))
+	move_and_slide()
+	#ZAP
 	if Input.is_action_just_pressed("zap"):
 		change_zap.emit(false)
 		zap.emit()
 
-	move_and_slide()
-
+#idk what Danny did here
 func _on_enemy_intersect(damage):
+	
 	num_enemies_touching += 1
 	
 	if not invulnerable:
@@ -56,6 +61,6 @@ func _on_invulnerability_timeout():
 	
 	if num_enemies_touching > 0:
 		hit(10)
-
+#collecting the battery
 func collect():
 	change_zap.emit(true)
