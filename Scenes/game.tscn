@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://dw1036we4bnyk"]
+[gd_scene load_steps=7 format=3 uid="uid://dw1036we4bnyk"]
 
 [ext_resource type="PackedScene" uid="uid://xf3st41xiic" path="res://Scenes/player1.tscn" id="1_1c0dr"]
 [ext_resource type="Script" path="res://Scripts/game.gd" id="1_ps43w"]
 [ext_resource type="PackedScene" uid="uid://c1vxgx41n1pt" path="res://Scenes/ui.tscn" id="2_3qgy2"]
 [ext_resource type="PackedScene" uid="uid://conbiiiex5m3y" path="res://Scenes/spawn.tscn" id="5_er2mk"]
 [ext_resource type="PackedScene" uid="uid://bar5nwac7lq8h" path="res://Scenes/pickup.tscn" id="5_y8un4"]
+[ext_resource type="Texture2D" uid="uid://d0hopkfl0b1y0" path="res://Assets/Map.png" id="6_8qiic"]
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_ps43w")
@@ -12,11 +13,11 @@ script = ExtResource("1_ps43w")
 [node name="UI" parent="." instance=ExtResource("2_3qgy2")]
 
 [node name="Player2" parent="." instance=ExtResource("1_1c0dr")]
-position = Vector2(61, 83)
+position = Vector2(54, 492)
 is_p1 = false
 
 [node name="Player1" parent="." instance=ExtResource("1_1c0dr")]
-position = Vector2(377, 225)
+position = Vector2(892, 495)
 
 [node name="Battery" type="Node2D" parent="."]
 
@@ -31,22 +32,28 @@ position = Vector2(229, 131)
 position = Vector2(188, 69)
 
 [node name="Spawn2" parent="SpawnLocation" instance=ExtResource("5_er2mk")]
-position = Vector2(282, 89)
+position = Vector2(420, 58)
 
 [node name="Spawn3" parent="SpawnLocation" instance=ExtResource("5_er2mk")]
 position = Vector2(150, 139)
 
 [node name="Spawn4" parent="SpawnLocation" instance=ExtResource("5_er2mk")]
-position = Vector2(215, 165)
+position = Vector2(574, 180)
 
 [node name="Spawn5" parent="SpawnLocation" instance=ExtResource("5_er2mk")]
 position = Vector2(139, 194)
 
 [node name="Spawn6" parent="SpawnLocation" instance=ExtResource("5_er2mk")]
-position = Vector2(227, 213)
+position = Vector2(849, 64)
 
 [node name="Spawn7" parent="SpawnLocation" instance=ExtResource("5_er2mk")]
-position = Vector2(310, 162)
+position = Vector2(402, 163)
+
+[node name="Map" type="Sprite2D" parent="."]
+z_index = -5
+scale = Vector2(3, 3)
+texture = ExtResource("6_8qiic")
+offset = Vector2(160, 90)
 
 [connection signal="change_zap" from="Player2" to="UI" method="_on_player_2_change_zap"]
 [connection signal="change_zap" from="Player1" to="UI" method="_on_player_1_change_zap"]

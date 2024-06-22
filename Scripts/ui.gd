@@ -2,7 +2,9 @@ extends CanvasLayer
 #this is just to change the bar properties
 @onready var zap_bar = $ZapBar
 #set the bar to full right away
-var zap_num = 5
+const ZAP_MAX = 7
+
+var zap_num = 7
 
 #set the bar value right away
 func _ready():
@@ -12,8 +14,8 @@ func _ready():
 func _on_player_1_change_zap(add):
 	if add:
 		zap_num += 3
-		if zap_num > 5:
-			zap_num = 5
+		if zap_num > ZAP_MAX:
+			zap_num = ZAP_MAX
 	else:
 		if zap_num > 0:
 			zap_num -= 1
