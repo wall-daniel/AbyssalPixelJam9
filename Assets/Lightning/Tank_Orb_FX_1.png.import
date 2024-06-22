@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://h25j05drmc6n"
-path="res://.godot/imported/Tank Orb FX 1.png-b203a305b0152ef93ee324cc3ce1a0fb.ctex"
+uid="uid://dr883jlgk7hy5"
+path="res://.godot/imported/Tank_Orb_FX_1.png-4c3d29e390897c1b7adde767a17fe392.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Lightning/Tank Orb FX 1.png"
-dest_files=["res://.godot/imported/Tank Orb FX 1.png-b203a305b0152ef93ee324cc3ce1a0fb.ctex"]
+source_file="res://Assets/Lightning/Tank_Orb_FX_1.png"
+dest_files=["res://.godot/imported/Tank_Orb_FX_1.png-4c3d29e390897c1b7adde767a17fe392.ctex"]
 
 [params]
 

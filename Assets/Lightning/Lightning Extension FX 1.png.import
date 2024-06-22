@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bh37sgkfd3hgo"
-path="res://.godot/imported/Lightning FX 1.2.png-373d989c17f1242d09337ea683056fdd.ctex"
+uid="uid://bv1itgxhmpsly"
+path="res://.godot/imported/Lightning Extension FX 1.png-69aa02da6b876be94a95f3b8a0e1126e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Lightning/Lightning FX 1.2.png"
-dest_files=["res://.godot/imported/Lightning FX 1.2.png-373d989c17f1242d09337ea683056fdd.ctex"]
+source_file="res://Assets/Lightning/Lightning Extension FX 1.png"
+dest_files=["res://.godot/imported/Lightning Extension FX 1.png-69aa02da6b876be94a95f3b8a0e1126e.ctex"]
 
 [params]
 
