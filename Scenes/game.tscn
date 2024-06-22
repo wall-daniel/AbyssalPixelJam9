@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://xf3st41xiic" path="res://Scenes/player1.tscn" id="1_1c0dr"]
 [ext_resource type="Script" path="res://Scripts/game.gd" id="1_ps43w"]
 [ext_resource type="PackedScene" uid="uid://bgbrtwptk61b1" path="res://Scenes/player2.tscn" id="2_ucsvu"]
-[ext_resource type="PackedScene" uid="uid://conbiiiex5m3y" path="res://Scenes/spawn.tscn" id="5_er2mk"]
+[ext_resource type="PackedScene" uid="uid://bon4befepqjoj" path="res://Scenes/spawn.tscn" id="5_er2mk"]
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_ps43w")

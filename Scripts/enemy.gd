@@ -25,3 +25,6 @@ func hit():
 	health -= 1
 	if health == 0:
 		death()
+
+func _on_hurt_box_body_entered(body):
+	body.hit(10)
