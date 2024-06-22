@@ -29,10 +29,8 @@ func _physics_process(_delta):
 	else:
 		velocity = Vector2(move_toward(velocity.x, 0, SPEED),move_toward(velocity.y, 0, SPEED))
 	if Input.is_action_just_pressed("zap"):
-		if n_zap > 0:
-			n_zap -= 1
-			change_zap.emit(n_zap)
-			zap.emit()
+		change_zap.emit(false)
+		zap.emit()
 
 	move_and_slide()
 
@@ -60,7 +58,4 @@ func _on_invulnerability_timeout():
 		hit(10)
 
 func collect():
-	n_zap += 3
-	if n_zap > 5:
-		n_zap = 5
-	change_zap.emit(n_zap)
+	change_zap.emit(true)
