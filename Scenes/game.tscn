@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://xf3st41xiic" path="res://Scenes/player1.tscn" id="1_1c0dr"]
 [ext_resource type="Script" path="res://Scripts/game.gd" id="1_ps43w"]
 [ext_resource type="PackedScene" uid="uid://bgbrtwptk61b1" path="res://Scenes/player2.tscn" id="2_ucsvu"]
-[ext_resource type="PackedScene" uid="uid://ibooixg6ee1u" path="res://Scenes/enemy.tscn" id="3_1hkjn"]
+[ext_resource type="PackedScene" uid="uid://conbiiiex5m3y" path="res://Scenes/spawn.tscn" id="5_er2mk"]
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_ps43w")
@@ -14,15 +14,29 @@ position = Vector2(358, 225)
 [node name="Player2" parent="." instance=ExtResource("2_ucsvu")]
 position = Vector2(82, 79)
 
-[node name="Enemies" type="Node" parent="."]
+[node name="Enemies" type="Node2D" parent="."]
 
-[node name="Enemy" parent="Enemies" instance=ExtResource("3_1hkjn")]
-position = Vector2(247, 175)
+[node name="SpawnLocation" type="Node2D" parent="."]
 
-[node name="Enemy3" parent="Enemies" instance=ExtResource("3_1hkjn")]
-position = Vector2(277, 79)
+[node name="Spawn" parent="SpawnLocation" instance=ExtResource("5_er2mk")]
+position = Vector2(188, 69)
 
-[node name="Enemy2" parent="Enemies" instance=ExtResource("3_1hkjn")]
-position = Vector2(138, 123)
+[node name="Spawn2" parent="SpawnLocation" instance=ExtResource("5_er2mk")]
+position = Vector2(282, 89)
+
+[node name="Spawn3" parent="SpawnLocation" instance=ExtResource("5_er2mk")]
+position = Vector2(150, 139)
+
+[node name="Spawn4" parent="SpawnLocation" instance=ExtResource("5_er2mk")]
+position = Vector2(215, 165)
+
+[node name="Spawn5" parent="SpawnLocation" instance=ExtResource("5_er2mk")]
+position = Vector2(139, 194)
+
+[node name="Spawn6" parent="SpawnLocation" instance=ExtResource("5_er2mk")]
+position = Vector2(227, 213)
+
+[node name="Spawn7" parent="SpawnLocation" instance=ExtResource("5_er2mk")]
+position = Vector2(310, 162)
 
 [connection signal="zap" from="Player1" to="." method="_on_player_1_zap"]
