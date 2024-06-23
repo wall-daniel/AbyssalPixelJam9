@@ -15,7 +15,7 @@ func _ready():
 #checks player one if there is a shot taken and if p1 collected a battery
 func _on_player_1_change_zap(add):
 	if add:
-		zap_num += 3
+		zap_num += 1
 		if zap_num > ZAP_MAX:
 			zap_num = ZAP_MAX
 	else:
@@ -26,7 +26,7 @@ func _on_player_1_change_zap(add):
 #checks player 2 if they collect anything since my code is completly jank idk man I just wanted to make some Globals oh well
 func _on_player_2_change_zap(add):
 	if add:
-		zap_num += 3
+		zap_num += 1
 		if zap_num > ZAP_MAX:
 			zap_num = ZAP_MAX
 	zap_bar.texture.region = zap_meter[zap_num]

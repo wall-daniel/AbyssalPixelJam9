@@ -1,10 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://dw1036we4bnyk"]
+[gd_scene load_steps=11 format=3 uid="uid://dw1036we4bnyk"]
 
-[ext_resource type="PackedScene" uid="uid://xf3st41xiic" path="res://Scenes/player1.tscn" id="1_1c0dr"]
+[ext_resource type="PackedScene" uid="uid://xf3st41xiic" path="res://Scenes/player.tscn" id="1_1c0dr"]
 [ext_resource type="Script" path="res://Scripts/game.gd" id="1_ps43w"]
 [ext_resource type="PackedScene" uid="uid://c1vxgx41n1pt" path="res://Scenes/ui.tscn" id="2_3qgy2"]
 [ext_resource type="PackedScene" uid="uid://conbiiiex5m3y" path="res://Scenes/spawn.tscn" id="5_er2mk"]
-[ext_resource type="PackedScene" uid="uid://bar5nwac7lq8h" path="res://Scenes/pickup.tscn" id="5_y8un4"]
 [ext_resource type="Texture2D" uid="uid://d0hopkfl0b1y0" path="res://Assets/Map.png" id="6_8qiic"]
 [ext_resource type="PackedScene" uid="uid://bk3cpsqohf3gu" path="res://Scenes/charging_station.tscn" id="6_074e4"]
 
@@ -35,9 +34,6 @@ is_p1 = false
 position = Vector2(892, 495)
 
 [node name="Battery" type="Node2D" parent="."]
-
-[node name="Pickup" parent="Battery" instance=ExtResource("5_y8un4")]
-position = Vector2(229, 131)
 
 [node name="Enemies" type="Node2D" parent="."]
 
@@ -71,6 +67,7 @@ texture = ExtResource("6_8qiic")
 offset = Vector2(160, 90)
 
 [node name="ChargingStation" parent="." instance=ExtResource("6_074e4")]
+position = Vector2(482, 283)
 
 [node name="Border" type="Node2D" parent="."]
 

@@ -1,32 +1,42 @@
-[gd_scene load_steps=5 format=3 uid="uid://bk3cpsqohf3gu"]
+[gd_scene load_steps=6 format=3 uid="uid://bk3cpsqohf3gu"]
 
 [ext_resource type="Script" path="res://Scripts/charging_station.gd" id="1_j4myo"]
+[ext_resource type="Texture2D" uid="uid://b5ngyapitinar" path="res://Assets/chargeoff.png" id="2_75ok3"]
+[ext_resource type="Texture2D" uid="uid://dnf5plmun57ib" path="res://Assets/chargeon.png" id="3_qnqt7"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0ineh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_75ok3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_qnqt7")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cr01t"]
-size = Vector2(62.0007, 129)
-
-[sub_resource type="Gradient" id="Gradient_axu73"]
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_2tjty"]
-gradient = SubResource("Gradient_axu73")
+size = Vector2(34.0002, 35.9998)
 
 [node name="ChargingStation" type="Area2D"]
-position = Vector2(720, 120)
+z_index = -4
 rotation = 1.57079
-collision_layer = 255
-collision_mask = 255
+scale = Vector2(3, 3)
+collision_mask = 2
 script = ExtResource("1_j4myo")
 
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_0ineh")
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(4.76837e-07, 2.99186e-12)
 shape = SubResource("RectangleShape2D_cr01t")
 
 [node name="ChargingTimer" type="Timer" parent="."]
 wait_time = 0.5
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(-0.500038, -0.999942)
-scale = Vector2(0.230469, 127.001)
-texture = SubResource("GradientTexture1D_2tjty")
 
 [connection signal="body_entered" from="." to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_area_2d_body_exited"]

@@ -36,7 +36,7 @@ func find_closest() -> Vector2:
 func death():
 	$CollisionShape2D.disabled = true
 	$HurtBox/CollisionShape2D.disabled = true
-	squirt.animation = "death"
+	squirt.play("death")
 	await squirt.animation_finished
 	queue_free()
 
