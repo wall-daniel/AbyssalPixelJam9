@@ -27,7 +27,6 @@ func zap():
 		texture.global_position = player_1.global_position
 		texture.offset.y = lightning_dist/2
 		texture.rotation = lightning_angle - deg_to_rad(90)
-		print(rad_to_deg(texture.rotation))
 		add_child(instance)
 
 #checks p1 for input

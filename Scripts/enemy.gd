@@ -11,6 +11,8 @@ var battery_scene = preload("res://Scenes/pickup.tscn")
 @onready var battery_node = $"../../../Battery"
 
 signal enemy_attack(damage)
+#animated sprite
+@onready var squirt = $Squirt
 
 func _physics_process(_delta):
 	#player movement
@@ -32,6 +34,10 @@ func find_closest() -> Vector2:
 
 #dying moment
 func death():
+	$CollisionShape2D.disabled = true
+	$HurtBox/CollisionShape2D.disabled = true
+	squirt.animation = "death"
+	await squirt.animation_finished
 	queue_free()
 
 #checking the drop chance
