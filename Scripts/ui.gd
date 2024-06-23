@@ -1,14 +1,15 @@
 extends CanvasLayer
 #this is just to change the bar properties
 @onready var zap_bar = $ZapBar
+@onready var health_bar = $TextureProgressBar
 #set the bar to full right away
 const ZAP_MAX = 7
-
 var zap_num = 7
 #load all the different sprites for the zap meter
 var zap_meter = [Rect2(236,2,8,29), Rect2(204,2,8,29), Rect2(172,2,8,29), Rect2(140,2,8,29),Rect2(108,2,8,29), Rect2(76,2,8,29), Rect2(44,2,8,29),Rect2(12,2,8,29)]
 #set the bar value right away,
 func _ready():
+	
 	zap_bar.texture.region = zap_meter[zap_num]
 
 #checks player one if there is a shot taken and if p1 collected a battery

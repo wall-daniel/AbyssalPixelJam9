@@ -1,15 +1,19 @@
 extends Node2D
 
 #adding nodes
-@onready var player_1 = $Player1
-@onready var player_2 = $Player2
+@onready var player_1 = $Players/Player1
+@onready var player_2 = $Players/Player2
 @onready var ui = $UI
+
 #preload scene
 var lightning = preload("res://Scenes/lightning.tscn")
 
 #player health
 const MAX_HEALTH = 100
 var health = MAX_HEALTH
+
+func _ready():
+	ui.health_bar.value = 100
 
 #add the lightning bolt
 func zap():
@@ -35,4 +39,4 @@ func _on_player_1_zap():
 
 func hit_player(damage):
 	health -= damage;
-	print('Ooof: ' + str(health))
+	ui.health_bar.value = health
