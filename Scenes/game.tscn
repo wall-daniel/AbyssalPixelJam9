@@ -1,12 +1,24 @@
-[gd_scene load_steps=8 format=3 uid="uid://dw1036we4bnyk"]
+[gd_scene load_steps=12 format=3 uid="uid://dw1036we4bnyk"]
 
 [ext_resource type="PackedScene" uid="uid://xf3st41xiic" path="res://Scenes/player1.tscn" id="1_1c0dr"]
 [ext_resource type="Script" path="res://Scripts/game.gd" id="1_ps43w"]
 [ext_resource type="PackedScene" uid="uid://c1vxgx41n1pt" path="res://Scenes/ui.tscn" id="2_3qgy2"]
 [ext_resource type="PackedScene" uid="uid://conbiiiex5m3y" path="res://Scenes/spawn.tscn" id="5_er2mk"]
-[ext_resource type="PackedScene" uid="uid://bar5nwac7lq8h" path="res://Scenes/pickup.tscn" id="5_y8un4"]
+[ext_resource type="PackedScene" path="res://Scenes/pickup.tscn" id="5_y8un4"]
 [ext_resource type="Texture2D" uid="uid://d0hopkfl0b1y0" path="res://Assets/Map.png" id="6_8qiic"]
-[ext_resource type="PackedScene" uid="uid://bk3cpsqohf3gu" path="res://Scenes/charging_station.tscn" id="6_074e4"]
+[ext_resource type="PackedScene" uid="uid://cd4wot1jx43ib" path="res://Scenes/charging_station.tscn" id="6_074e4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i6cmg"]
+size = Vector2(1009, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8lwva"]
+size = Vector2(1003, 29)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bkurm"]
+size = Vector2(40, 555)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kc2y8"]
+size = Vector2(24, 548)
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_ps43w")
@@ -57,6 +69,36 @@ texture = ExtResource("6_8qiic")
 offset = Vector2(160, 90)
 
 [node name="ChargingStation" parent="." instance=ExtResource("6_074e4")]
+
+[node name="Border" type="Node2D" parent="."]
+
+[node name="Top" type="StaticBody2D" parent="Border"]
+position = Vector2(479, -14)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Border/Top"]
+position = Vector2(3.5, 0)
+shape = SubResource("RectangleShape2D_i6cmg")
+
+[node name="Bottom" type="StaticBody2D" parent="Border"]
+position = Vector2(482, 549)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Border/Bottom"]
+position = Vector2(5.5, 4.5)
+shape = SubResource("RectangleShape2D_8lwva")
+
+[node name="Left" type="StaticBody2D" parent="Border"]
+position = Vector2(-23, 264)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Border/Left"]
+position = Vector2(3, 7.5)
+shape = SubResource("RectangleShape2D_bkurm")
+
+[node name="Right" type="StaticBody2D" parent="Border"]
+position = Vector2(974, 265.5)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Border/Right"]
+position = Vector2(-3, 7.5)
+shape = SubResource("RectangleShape2D_kc2y8")
 
 [connection signal="change_zap" from="Player2" to="UI" method="_on_player_2_change_zap"]
 [connection signal="change_zap" from="Player1" to="UI" method="_on_player_1_change_zap"]
