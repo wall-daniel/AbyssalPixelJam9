@@ -1,7 +1,7 @@
 extends CharacterBody2D
 #enemy stat
-const SPEED = 100
-@export var health = 1
+var speed = 100
+@export var health = 2
 #stunned
 var is_stunned:bool = false
 @onready var stuntime = $Stuntime
@@ -14,11 +14,16 @@ signal enemy_attack(damage)
 #animated sprite
 @onready var squirt = $Squirt
 
+func _ready():
+	squirt.play("spawn")
+	await squirt.animation_finished
+	squirt.play("idle")
+
 func _physics_process(_delta):
 	#player movement
 	if not is_stunned:
 		var direction = find_closest() - global_position
-		velocity = direction.normalized() * SPEED
+		velocity = direction.normalized() * speed
 		move_and_slide()
 
 #looks for closest player called in physics process
@@ -38,6 +43,7 @@ func death():
 	$HurtBox/CollisionShape2D.disabled = true
 	squirt.play("death")
 	await squirt.animation_finished
+	drop()
 	queue_free()
 
 #checking the drop chance
@@ -48,15 +54,17 @@ func drop():
 		var battery = battery_scene.instantiate()
 		add_child(battery)
 		battery.reparent(battery_node)
-	death()
+	#death()
 
 #enemy hit
 func hit():
+	is_stunned = true
 	health -= 1
 	if health == 0:
-		call_deferred("drop")
-	is_stunned = true
-	stuntime.start()
+		call_deferred("death")
+	else:
+		squirt.animation = "stunned"
+		stuntime.start()
 
 var intersected_players = []
 var ready_to_attack = true
@@ -82,7 +90,9 @@ func _on_hurt_box_body_exited(body):
 
 #stun cooldown
 func _on_stuntime_timeout():
-	is_stunned = false
+	if health > 0:
+		squirt.animation = "idle"
+		is_stunned = false
 
 # Attack timer
 func _on_attack_timer_timeout():

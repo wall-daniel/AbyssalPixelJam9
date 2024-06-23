@@ -4,14 +4,32 @@ extends Marker2D
 @onready var enemies = $"../../Enemies"
 #load the enemy scene
 @onready var enemy = preload("res://Scenes/enemy.tscn")
+@onready var game = $"../.."
+
+var spawn_chance = 3
 
 # Called when the node enters the scene tree for the first time.
 #spawn on ready but we can change this to a timer/chance system with a limit on spawn or something
 func _ready():
-	spawn()
+	try_spawn()
+
+func try_spawn():
+	if not game.limit_reached:
+		randomize()
+		if randi_range(1,spawn_chance) == spawn_chance:
+			spawn()
 
 #the actual instantiation of the enemy and reparenting to the Enemies node in Game scene
 func spawn():
+	game.enemylimit -= 1
+	if game.enemylimit <= 0:
+		game.limit_reached = true
 	var spawn_enemy = enemy.instantiate()
 	add_child(spawn_enemy)
 	spawn_enemy.reparent(enemies)
+
+func _on_timer_timeout():
+	if not game.limit_reached:
+		try_spawn()
+	else:
+		$SpawnCD.stop()

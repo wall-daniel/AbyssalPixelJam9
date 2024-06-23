@@ -5,9 +5,6 @@ signal zap()
 signal change_zap(add)
 #constant moment
 const SPEED = 300.0
-const MAX_HEALTH = 100
-#player hit check
-var health = MAX_HEALTH
 #controls
 var p1_controls: Array = ["p1-left", "p1-right", "p1-up", "p1-down"]
 var p2_controls: Array = ["p2-left", "p2-right", "p2-up", "p2-down"]
@@ -16,6 +13,8 @@ var controls: Array = []
 var n_zap = 5
 #car for sprite depending on player
 var moving: Node
+#death mechanics
+var is_dead = false
 
 func _ready():
 	#check to see what controls to use
@@ -29,6 +28,8 @@ func _ready():
 		controls = p2_controls
 
 func _physics_process(_delta):
+	if is_dead:
+		return
 	#basic movement
 	var direction = Input.get_vector(controls[0], controls[1], controls[2], controls[3])
 	if direction:
@@ -43,7 +44,11 @@ func _physics_process(_delta):
 	if Input.is_action_just_pressed("zap"):
 		zap.emit()
 		change_zap.emit(false)
-		
+
 #collecting the battery
 func collect():
 	change_zap.emit(true)
+
+func game_over():
+	is_dead = true
+	moving.play("death")

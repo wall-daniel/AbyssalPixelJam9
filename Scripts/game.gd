@@ -11,10 +11,14 @@ var lightning = preload("res://Scenes/lightning.tscn")
 #player health
 const MAX_HEALTH = 100
 var health = MAX_HEALTH
+var is_dead = false
+
+#limit enemies
+var enemylimit = 15
+var limit_reached = false
 
 func _ready():
-	ui.health_bar.value = 100
-
+	ui.health_bar.value = health
 #add the lightning bolt
 func zap():
 	#check ui if player has the juice
@@ -40,3 +44,7 @@ func _on_player_1_zap():
 func hit_player(damage):
 	health -= damage;
 	ui.health_bar.value = health
+	if health <= 0 and not is_dead:
+		is_dead = true
+		player_1.game_over()
+		player_2.game_over()

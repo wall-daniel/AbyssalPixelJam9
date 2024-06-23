@@ -1,0 +1,8 @@
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://dri2s0ifcwagh"]
+
+[ext_resource type="FontFile" uid="uid://x5t417wvpskd" path="res://Assets/UI/PixeloidMono-d94EV.ttf" id="1_la06v"]
+
+[resource]
+font = ExtResource("1_la06v")
+font_size = 22
+shadow_color = Color(0, 0, 0, 1)
