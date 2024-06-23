@@ -1,7 +1,7 @@
 extends CharacterBody2D
 #enemy stat
 const SPEED = 100
-@export var health = 2
+@export var health = 1
 #stunned
 var is_stunned:bool = false
 @onready var stuntime = $Stuntime
