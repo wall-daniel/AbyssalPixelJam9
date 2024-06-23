@@ -32,5 +32,6 @@ func _on_player_2_change_zap(add):
 
 # From charging station
 func _on_charging_station_charge_battery():
-	zap_num += 1
-	zap_bar.texture.region = zap_meter[zap_num]
+	if zap_num < 7:
+		zap_num += 1
+		zap_bar.texture.region = zap_meter[zap_num]
