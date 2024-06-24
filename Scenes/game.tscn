@@ -33,6 +33,9 @@ is_p1 = false
 [node name="Player1" parent="Players" instance=ExtResource("1_1c0dr")]
 position = Vector2(892, 495)
 
+[node name="Iframes" type="Timer" parent="Players"]
+one_shot = true
+
 [node name="Battery" type="Node2D" parent="."]
 
 [node name="Enemies" type="Node2D" parent="."]
@@ -40,31 +43,42 @@ position = Vector2(892, 495)
 [node name="SpawnLocation" type="Node2D" parent="."]
 
 [node name="Spawn" parent="SpawnLocation" instance=ExtResource("5_er2mk")]
-position = Vector2(188, 69)
+position = Vector2(162, 51)
+
+[node name="Spawn8" parent="SpawnLocation" instance=ExtResource("5_er2mk")]
+position = Vector2(292, 145)
+
+[node name="Spawn9" parent="SpawnLocation" instance=ExtResource("5_er2mk")]
+position = Vector2(597, 61)
+
+[node name="Spawn10" parent="SpawnLocation" instance=ExtResource("5_er2mk")]
+position = Vector2(708, 169)
 
 [node name="Spawn2" parent="SpawnLocation" instance=ExtResource("5_er2mk")]
 position = Vector2(420, 58)
 
 [node name="Spawn3" parent="SpawnLocation" instance=ExtResource("5_er2mk")]
-position = Vector2(150, 139)
+position = Vector2(100, 157)
 
 [node name="Spawn4" parent="SpawnLocation" instance=ExtResource("5_er2mk")]
-position = Vector2(574, 180)
+position = Vector2(599, 239)
 
 [node name="Spawn5" parent="SpawnLocation" instance=ExtResource("5_er2mk")]
-position = Vector2(139, 194)
+position = Vector2(475, 159)
 
 [node name="Spawn6" parent="SpawnLocation" instance=ExtResource("5_er2mk")]
 position = Vector2(849, 64)
 
 [node name="Spawn7" parent="SpawnLocation" instance=ExtResource("5_er2mk")]
-position = Vector2(402, 163)
+position = Vector2(324, 258)
 
 [node name="Map" type="Sprite2D" parent="."]
 z_index = -5
 scale = Vector2(3, 3)
 texture = ExtResource("6_8qiic")
 offset = Vector2(160, 90)
+metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
 
 [node name="ChargingStation" parent="." instance=ExtResource("6_074e4")]
 position = Vector2(482, 283)
@@ -102,4 +116,5 @@ shape = SubResource("RectangleShape2D_kc2y8")
 [connection signal="change_zap" from="Players/Player2" to="UI" method="_on_player_2_change_zap"]
 [connection signal="change_zap" from="Players/Player1" to="UI" method="_on_player_1_change_zap"]
 [connection signal="zap" from="Players/Player1" to="." method="_on_player_1_zap"]
+[connection signal="timeout" from="Players/Iframes" to="." method="_on_iframes_timeout"]
 [connection signal="charge_battery" from="ChargingStation" to="UI" method="_on_charging_station_charge_battery"]

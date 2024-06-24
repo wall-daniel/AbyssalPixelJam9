@@ -1,7 +1,10 @@
 extends CharacterBody2D
+
 #enemy stat
 var speed = 100
 @export var health = 2
+var can_hit = false
+
 #stunned
 var is_stunned:bool = false
 @onready var stuntime = $Stuntime
@@ -10,13 +13,19 @@ var is_stunned:bool = false
 var battery_scene = preload("res://Scenes/pickup.tscn")
 @onready var battery_node = $"../../../Battery"
 
+#tell game to hit player
 signal enemy_attack(damage)
+
 #animated sprite
 @onready var squirt = $Squirt
+
+#tell game that enemy has died
+signal enemy_died
 
 func _ready():
 	squirt.play("spawn")
 	await squirt.animation_finished
+	can_hit = true
 	squirt.play("idle")
 
 func _physics_process(_delta):
@@ -39,8 +48,9 @@ func find_closest() -> Vector2:
 
 #dying moment
 func death():
+	get_node("../../").enemy_died()
 	$CollisionShape2D.disabled = true
-	$HurtBox/CollisionShape2D.disabled = true
+	can_hit = false
 	squirt.play("death")
 	await squirt.animation_finished
 	drop()
@@ -54,10 +64,10 @@ func drop():
 		var battery = battery_scene.instantiate()
 		add_child(battery)
 		battery.reparent(battery_node)
-	#death()
 
 #enemy hit
 func hit():
+	$AnimationPlayer.play("hit")
 	is_stunned = true
 	health -= 1
 	if health == 0:
@@ -76,7 +86,7 @@ func _on_hurt_box_body_entered(body):
 		intersected_players.push_front(body)
 	
 	# Check if they can attack
-	if ready_to_attack:
+	if ready_to_attack and can_hit:
 		get_node("../../").hit_player(10)
 		
 	# Set timer
@@ -91,7 +101,7 @@ func _on_hurt_box_body_exited(body):
 #stun cooldown
 func _on_stuntime_timeout():
 	if health > 0:
-		squirt.animation = "idle"
+		squirt.animation = "hurt_idle"
 		is_stunned = false
 
 # Attack timer

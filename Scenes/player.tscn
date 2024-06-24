@@ -1,6 +1,7 @@
-[gd_scene load_steps=105 format=3 uid="uid://xf3st41xiic"]
+[gd_scene load_steps=109 format=3 uid="uid://xf3st41xiic"]
 
 [ext_resource type="Script" path="res://Scripts/player1.gd" id="1_txacy"]
+[ext_resource type="Material" uid="uid://b308oqnmyumek" path="res://Assets/hit_shader.tres" id="2_b4cdp"]
 [ext_resource type="Texture2D" uid="uid://etjlbdggjxyf" path="res://Assets/SpriteSheet/BlueTankDeathSprite.png" id="2_or2e6"]
 [ext_resource type="Texture2D" uid="uid://byut3fx4yt6gl" path="res://Assets/SpriteSheet/TurretRedSprite.png" id="2_tdljk"]
 [ext_resource type="Texture2D" uid="uid://civ5pcm8e7w47" path="res://Assets/SpriteSheet/TurretBlueSprite.png" id="3_psx1p"]
@@ -707,6 +708,66 @@ animations = [{
 "speed": 24.0
 }]
 
+[sub_resource type="Animation" id="Animation_08gxa"]
+resource_name = "hit"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Player1:material:shader_parameter/alpha")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 0.6, 0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Player2:material:shader_parameter/alpha")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 0.6, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_20ldj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Player1:material:shader_parameter/alpha")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Player2:material:shader_parameter/alpha")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_m5vgf"]
+_data = {
+"RESET": SubResource("Animation_20ldj"),
+"hit": SubResource("Animation_08gxa")
+}
+
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 z_index = 5
 collision_layer = 2
@@ -718,13 +779,20 @@ script = ExtResource("1_txacy")
 shape = SubResource("CircleShape2D_3t3c7")
 
 [node name="Player2" type="AnimatedSprite2D" parent="."]
+material = ExtResource("2_b4cdp")
 sprite_frames = SubResource("SpriteFrames_sycwy")
 animation = &"death"
 frame = 23
 frame_progress = 1.0
 
 [node name="Player1" type="AnimatedSprite2D" parent="."]
+material = ExtResource("2_b4cdp")
 sprite_frames = SubResource("SpriteFrames_fj3rn")
 animation = &"death"
 frame = 23
 frame_progress = 1.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_m5vgf")
+}

@@ -12,12 +12,20 @@ var lightning = preload("res://Scenes/lightning.tscn")
 const MAX_HEALTH = 100
 var health = MAX_HEALTH
 var is_dead = false
+var immune = false
 
 #limit enemies
-var enemylimit = 15
+var enemy_max = 15
+var enemylimit = enemy_max
+var enemy_killed = 0
 var limit_reached = false
 
+#scoring system
+var score: int = 0
+var score_mult: float = 1.0
+
 func _ready():
+	ui.update_score(score)
 	ui.health_bar.value = health
 #add the lightning bolt
 func zap():
@@ -42,9 +50,33 @@ func _on_player_1_zap():
 	zap()
 
 func hit_player(damage):
+	if is_dead or immune:
+		return
 	health -= damage;
 	ui.health_bar.value = health
-	if health <= 0 and not is_dead:
+	if health <= 0:
 		is_dead = true
 		player_1.game_over()
 		player_2.game_over()
+		return
+	player_1.play_immune()
+	player_2.play_immune()
+	immune = true
+	$Players/Iframes.start()
+
+func _on_iframes_timeout():
+	immune = false
+
+func enemy_died():
+	score_points(100)
+	enemy_killed += 1
+	if enemy_killed == enemy_max:
+		win()
+
+func win():
+	score_points(1000)
+	print("you win")
+
+func score_points(points):
+	score += int(points * score_mult)
+	ui.update_score(score)

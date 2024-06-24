@@ -52,3 +52,6 @@ func collect():
 func game_over():
 	is_dead = true
 	moving.play("death")
+
+func play_immune():
+	$AnimationPlayer.play("hit")
