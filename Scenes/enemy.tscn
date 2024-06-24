@@ -1,4 +1,4 @@
-[gd_scene load_steps=287 format=3 uid="uid://ibooixg6ee1u"]
+[gd_scene load_steps=288 format=3 uid="uid://ibooixg6ee1u"]
 
 [ext_resource type="Script" path="res://Scripts/enemy.gd" id="1_bh1am"]
 [ext_resource type="Texture2D" uid="uid://cuvdglaamodew" path="res://Assets/SpriteSheet/EnemyDeathSprite2.png" id="2_b7psb"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://buqln13ibcc66" path="res://Assets/SpriteSheet/EnemyDamagedSprite.png" id="4_f7dvt"]
 [ext_resource type="Texture2D" uid="uid://da1q0pnltvcde" path="res://Assets/SpriteSheet/EnemyStunnedSprite.png" id="4_rsgr7"]
 [ext_resource type="Texture2D" uid="uid://dea2int7h7mx1" path="res://Assets/SpriteSheet/EnemySpawnSprite.png" id="4_x3h3y"]
+[ext_resource type="AudioStream" uid="uid://uuo1kpauqvkb" path="res://Assets/Music/Sounds/fart (1).mp3" id="8_ihoaq"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_sposk"]
 resource_local_to_scene = true
@@ -1992,6 +1993,7 @@ _data = {
 [node name="Enemy" type="CharacterBody2D"]
 collision_layer = 4
 collision_mask = 4
+motion_mode = 1
 script = ExtResource("1_bh1am")
 
 [node name="Squirt" type="AnimatedSprite2D" parent="." groups=["enemy"]]
@@ -2018,6 +2020,10 @@ wait_time = 0.5
 libraries = {
 "": SubResource("AnimationLibrary_auwov")
 }
+
+[node name="Spawn" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_ihoaq")
+volume_db = 5.0
 
 [connection signal="body_entered" from="HurtBox" to="." method="_on_hurt_box_body_entered"]
 [connection signal="body_exited" from="HurtBox" to="." method="_on_hurt_box_body_exited"]

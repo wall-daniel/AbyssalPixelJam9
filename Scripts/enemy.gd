@@ -1,12 +1,12 @@
 extends CharacterBody2D
 
 #enemy stat
-var speed = 100
+@onready var speed = Globals.enemy_speed
 @export var health = 2
 var can_hit = false
 
 #stunned
-var is_stunned:bool = false
+var is_stunned:bool = true
 @onready var stuntime = $Stuntime
 
 #get battery drop
@@ -23,8 +23,10 @@ signal enemy_attack(damage)
 signal enemy_died
 
 func _ready():
+	$Spawn.play()
 	squirt.play("spawn")
 	await squirt.animation_finished
+	is_stunned = false
 	can_hit = true
 	squirt.play("idle")
 

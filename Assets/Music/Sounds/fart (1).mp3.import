@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://uuo1kpauqvkb"
+path="res://.godot/imported/fart (1).mp3-4263d396afe7c05f9020a6e9f1d89152.mp3str"
+
+[deps]
+
+source_file="res://Assets/Music/Sounds/fart (1).mp3"
+dest_files=["res://.godot/imported/fart (1).mp3-4263d396afe7c05f9020a6e9f1d89152.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

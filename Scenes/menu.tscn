@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://ihp0mbs80xjk"]
+[gd_scene load_steps=11 format=3 uid="uid://ihp0mbs80xjk"]
 
 [ext_resource type="Script" path="res://Scripts/Menu.gd" id="1_om4lc"]
 [ext_resource type="Texture2D" uid="uid://w43oqyynlpt4" path="res://Assets/UI/title.png" id="2_i0jto"]
@@ -8,6 +8,7 @@
 [ext_resource type="BitMap" uid="uid://dq74gy6q1alp1" path="res://Assets/UI/clickmask.bmp" id="5_uasko"]
 [ext_resource type="FontFile" uid="uid://x5t417wvpskd" path="res://Assets/UI/PixeloidMono-d94EV.ttf" id="6_fa8hl"]
 [ext_resource type="LabelSettings" uid="uid://dri2s0ifcwagh" path="res://Assets/UI/menuFont.tres" id="6_g0l5l"]
+[ext_resource type="Texture2D" uid="uid://c5j3k2p07n731" path="res://Assets/UI/MenuBG.png" id="9_iuuth"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_mieff"]
 font = ExtResource("6_fa8hl")
@@ -108,6 +109,11 @@ text = "INFO"
 label_settings = SubResource("LabelSettings_mieff")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="MenuBg" type="Sprite2D" parent="."]
+position = Vector2(480, 270)
+scale = Vector2(3, 3)
+texture = ExtResource("9_iuuth")
 
 [connection signal="pressed" from="CanvasLayer/MarginContainer/VBoxContainer2/VBoxContainer/Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="CanvasLayer/MarginContainer/VBoxContainer2/VBoxContainer/Credits" to="." method="_on_credits_pressed"]

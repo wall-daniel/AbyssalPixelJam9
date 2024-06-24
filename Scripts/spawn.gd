@@ -10,8 +10,6 @@ var spawn_chance = 3
 
 # Called when the node enters the scene tree for the first time.
 #spawn on ready but we can change this to a timer/chance system with a limit on spawn or something
-func _ready():
-	try_spawn()
 
 func try_spawn():
 	if not game.limit_reached:
@@ -21,9 +19,14 @@ func try_spawn():
 
 #the actual instantiation of the enemy and reparenting to the Enemies node in Game scene
 func spawn():
+	if game.pause_spawn:
+		return
 	game.enemylimit -= 1
+	game.enemy_onscreen += 1
 	if game.enemylimit <= 0:
 		game.limit_reached = true
+	if game.enemy_onscreen == game.max_onscreen:
+		game.pause_spawn = true
 	var spawn_enemy = enemy.instantiate()
 	add_child(spawn_enemy)
 	spawn_enemy.reparent(enemies)

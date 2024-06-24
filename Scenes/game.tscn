@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://dw1036we4bnyk"]
+[gd_scene load_steps=16 format=3 uid="uid://dw1036we4bnyk"]
 
 [ext_resource type="PackedScene" uid="uid://xf3st41xiic" path="res://Scenes/player.tscn" id="1_1c0dr"]
 [ext_resource type="Script" path="res://Scripts/game.gd" id="1_ps43w"]
@@ -6,6 +6,11 @@
 [ext_resource type="PackedScene" uid="uid://conbiiiex5m3y" path="res://Scenes/spawn.tscn" id="5_er2mk"]
 [ext_resource type="Texture2D" uid="uid://d0hopkfl0b1y0" path="res://Assets/Map.png" id="6_8qiic"]
 [ext_resource type="PackedScene" uid="uid://bk3cpsqohf3gu" path="res://Scenes/charging_station.tscn" id="6_074e4"]
+[ext_resource type="AudioStream" uid="uid://v3k4j1mlityb" path="res://Assets/Music/Sounds/stinger-2021-08-16_-_8_Bit_Adventure_-_www.FesliyanStudios.com.mp3" id="7_bmluj"]
+[ext_resource type="AudioStream" uid="uid://bxugmr8y65vfp" path="res://Assets/Music/2021-08-16_-_8_Bit_Adventure_-_www.FesliyanStudios.com.mp3" id="7_k8425"]
+[ext_resource type="AudioStream" uid="uid://dtn3om2ip7bb8" path="res://Assets/Music/Sounds/lightning.mp3" id="9_348j3"]
+[ext_resource type="AudioStream" uid="uid://bd6lgl78pg28o" path="res://Assets/Music/Sounds/Tank hit.mp3" id="10_7tnf1"]
+[ext_resource type="AudioStream" uid="uid://c2t2ms8h3yukw" path="res://Assets/Music/Sounds/tank_explosion_(gush.mp3" id="11_avmtl"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i6cmg"]
 size = Vector2(1009, 20)
@@ -61,7 +66,7 @@ position = Vector2(420, 58)
 position = Vector2(100, 157)
 
 [node name="Spawn4" parent="SpawnLocation" instance=ExtResource("5_er2mk")]
-position = Vector2(599, 239)
+position = Vector2(861, 178)
 
 [node name="Spawn5" parent="SpawnLocation" instance=ExtResource("5_er2mk")]
 position = Vector2(475, 159)
@@ -70,7 +75,43 @@ position = Vector2(475, 159)
 position = Vector2(849, 64)
 
 [node name="Spawn7" parent="SpawnLocation" instance=ExtResource("5_er2mk")]
-position = Vector2(324, 258)
+position = Vector2(467, 464)
+
+[node name="Spawn11" parent="SpawnLocation" instance=ExtResource("5_er2mk")]
+position = Vector2(155, 290)
+
+[node name="Spawn12" parent="SpawnLocation" instance=ExtResource("5_er2mk")]
+position = Vector2(250, 497)
+
+[node name="Spawn13" parent="SpawnLocation" instance=ExtResource("5_er2mk")]
+position = Vector2(721, 376)
+
+[node name="Spawn21" parent="SpawnLocation" instance=ExtResource("5_er2mk")]
+position = Vector2(260, 248)
+
+[node name="Spawn22" parent="SpawnLocation" instance=ExtResource("5_er2mk")]
+position = Vector2(671, 272)
+
+[node name="Spawn14" parent="SpawnLocation" instance=ExtResource("5_er2mk")]
+position = Vector2(876, 422)
+
+[node name="Spawn15" parent="SpawnLocation" instance=ExtResource("5_er2mk")]
+position = Vector2(629, 470)
+
+[node name="Spawn16" parent="SpawnLocation" instance=ExtResource("5_er2mk")]
+position = Vector2(61, 400)
+
+[node name="Spawn17" parent="SpawnLocation" instance=ExtResource("5_er2mk")]
+position = Vector2(755, 499)
+
+[node name="Spawn18" parent="SpawnLocation" instance=ExtResource("5_er2mk")]
+position = Vector2(277, 385)
+
+[node name="Spawn19" parent="SpawnLocation" instance=ExtResource("5_er2mk")]
+position = Vector2(810, 307)
+
+[node name="Spawn20" parent="SpawnLocation" instance=ExtResource("5_er2mk")]
+position = Vector2(113, 493)
 
 [node name="Map" type="Sprite2D" parent="."]
 z_index = -5
@@ -113,8 +154,27 @@ position = Vector2(974, 265.5)
 position = Vector2(-3, 7.5)
 shape = SubResource("RectangleShape2D_kc2y8")
 
+[node name="Music" type="Node2D" parent="."]
+
+[node name="BG" type="AudioStreamPlayer2D" parent="Music"]
+stream = ExtResource("7_k8425")
+autoplay = true
+
+[node name="Win" type="AudioStreamPlayer2D" parent="Music"]
+stream = ExtResource("7_bmluj")
+
+[node name="Lightning" type="AudioStreamPlayer2D" parent="Music"]
+stream = ExtResource("9_348j3")
+
+[node name="TankHit" type="AudioStreamPlayer2D" parent="Music"]
+stream = ExtResource("10_7tnf1")
+
+[node name="GameOver" type="AudioStreamPlayer2D" parent="Music"]
+stream = ExtResource("11_avmtl")
+
 [connection signal="change_zap" from="Players/Player2" to="UI" method="_on_player_2_change_zap"]
 [connection signal="change_zap" from="Players/Player1" to="UI" method="_on_player_1_change_zap"]
 [connection signal="zap" from="Players/Player1" to="." method="_on_player_1_zap"]
 [connection signal="timeout" from="Players/Iframes" to="." method="_on_iframes_timeout"]
 [connection signal="charge_battery" from="ChargingStation" to="UI" method="_on_charging_station_charge_battery"]
+[connection signal="finished" from="Music/BG" to="." method="_on_bg_finished"]

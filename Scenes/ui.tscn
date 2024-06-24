@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://c1vxgx41n1pt"]
+[gd_scene load_steps=19 format=3 uid="uid://c1vxgx41n1pt"]
 
 [ext_resource type="Script" path="res://Scripts/ui.gd" id="1_jc5ar"]
 [ext_resource type="Texture2D" uid="uid://2pvflbea4nub" path="res://Assets/UI/battui.png" id="2_bpx40"]
@@ -6,6 +6,11 @@
 [ext_resource type="Texture2D" uid="uid://0m1uojnwv4l7" path="res://Assets/UI/hpoutline.png" id="4_jksw8"]
 [ext_resource type="Texture2D" uid="uid://mc4xb0prs7me" path="res://Assets/UI/hpfill.png" id="5_0bxpj"]
 [ext_resource type="FontFile" uid="uid://x5t417wvpskd" path="res://Assets/UI/PixeloidMono-d94EV.ttf" id="6_q2phr"]
+[ext_resource type="AudioStream" uid="uid://5w8odak5f4u3" path="res://Assets/Music/Sounds/charge.mp3" id="7_u8ljl"]
+[ext_resource type="Texture2D" uid="uid://svonymkj11j6" path="res://Assets/UI/buttonreg.png" id="8_w24nc"]
+[ext_resource type="Texture2D" uid="uid://bbncmt7sq7gdv" path="res://Assets/UI/buttonpress.png" id="9_n1kuv"]
+[ext_resource type="Texture2D" uid="uid://o0afmobo12x4" path="res://Assets/UI/buttonhighlight.png" id="10_7dyuo"]
+[ext_resource type="BitMap" uid="uid://dq74gy6q1alp1" path="res://Assets/UI/clickmask.bmp" id="11_f66x8"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gq4yo"]
 atlas = ExtResource("2_bpx40")
@@ -14,6 +19,25 @@ region = Rect2(236, 2, 8, 29)
 [sub_resource type="LabelSettings" id="LabelSettings_hy6w5"]
 font = ExtResource("6_q2phr")
 font_size = 24
+
+[sub_resource type="LabelSettings" id="LabelSettings_0jflh"]
+font = ExtResource("6_q2phr")
+font_size = 24
+
+[sub_resource type="LabelSettings" id="LabelSettings_s7kbb"]
+font = ExtResource("6_q2phr")
+font_size = 24
+
+[sub_resource type="LabelSettings" id="LabelSettings_th1p3"]
+font = ExtResource("6_q2phr")
+font_size = 44
+
+[sub_resource type="LabelSettings" id="LabelSettings_bphs0"]
+font = ExtResource("6_q2phr")
+
+[sub_resource type="LabelSettings" id="LabelSettings_e1w31"]
+font = ExtResource("6_q2phr")
+font_size = 28
 
 [node name="UI" type="CanvasLayer"]
 script = ExtResource("1_jc5ar")
@@ -52,5 +76,138 @@ offset_left = 6.0
 offset_top = -30.0
 offset_right = 134.0
 grow_vertical = 0
-text = "Score: X"
+text = "Score: 0"
 label_settings = SubResource("LabelSettings_hy6w5")
+
+[node name="Wave" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -56.0
+offset_top = -15.0
+offset_right = 56.0
+offset_bottom = 15.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Wave: 1"
+label_settings = SubResource("LabelSettings_0jflh")
+
+[node name="Win" type="Label" parent="."]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -112.0
+offset_top = -15.0
+offset_right = 112.0
+offset_bottom = 15.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Wave Complete!"
+label_settings = SubResource("LabelSettings_s7kbb")
+
+[node name="Charge" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_u8ljl")
+
+[node name="GameOver" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="GameOver"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -200.0
+offset_right = 200.0
+offset_bottom = 200.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="GameOver/MarginContainer"]
+custom_minimum_size = Vector2(400, 400)
+layout_mode = 2
+texture = ExtResource("8_w24nc")
+expand_mode = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GameOver/MarginContainer/TextureRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -130.5
+offset_top = -39.0
+offset_right = 130.5
+offset_bottom = 39.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="GameOver/MarginContainer/TextureRect/VBoxContainer"]
+layout_mode = 2
+text = "GAME OVER"
+label_settings = SubResource("LabelSettings_th1p3")
+horizontal_alignment = 1
+
+[node name="FinalScore" type="Label" parent="GameOver/MarginContainer/TextureRect/VBoxContainer"]
+layout_mode = 2
+text = "Score: 0"
+label_settings = SubResource("LabelSettings_bphs0")
+horizontal_alignment = 1
+
+[node name="Menu" type="TextureButton" parent="GameOver"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -64.0
+offset_top = 106.0
+offset_right = 64.0
+offset_bottom = 234.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+texture_normal = ExtResource("8_w24nc")
+texture_pressed = ExtResource("9_n1kuv")
+texture_hover = ExtResource("10_7dyuo")
+texture_click_mask = ExtResource("11_f66x8")
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="GameOver/Menu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -36.0
+offset_top = -16.5
+offset_right = 36.0
+offset_bottom = 16.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "MENU"
+label_settings = SubResource("LabelSettings_e1w31")
+
+[connection signal="pressed" from="GameOver/Menu" to="." method="_on_menu_pressed"]

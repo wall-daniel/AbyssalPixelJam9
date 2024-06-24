@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bd6lgl78pg28o"
+path="res://.godot/imported/Tank hit.mp3-6d2d1f9fa729f1c7e8cf4a0d462e332e.mp3str"
+
+[deps]
+
+source_file="res://Assets/Music/Sounds/Tank hit.mp3"
+dest_files=["res://.godot/imported/Tank hit.mp3-6d2d1f9fa729f1c7e8cf4a0d462e332e.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
